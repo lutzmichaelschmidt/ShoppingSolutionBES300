@@ -18,6 +18,14 @@ namespace ShoppingApi.Data
 
         public DbSet<ShoppingItem> ShoppingItems { get; set; }
 
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<ShoppingItem>().HasData(
+                new ShoppingItem { Id = 1, Description = "Beer", Purchased = false },
+                new ShoppingItem { Id = 2, Description = "Toilet Paper", Purchased = true, PurchasedFrom = "Acme" }
+                );
+        }
+
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             optionsBuilder.UseLoggerFactory(LoggerFactory);

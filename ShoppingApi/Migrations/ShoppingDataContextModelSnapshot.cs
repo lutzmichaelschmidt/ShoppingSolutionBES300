@@ -31,12 +31,30 @@ namespace ShoppingApi.Migrations
                     b.Property<bool>("Purchased")
                         .HasColumnType("bit");
 
+                    b.Property<string>("PurchasedBy")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("PurchasedFrom")
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 
                     b.ToTable("ShoppingItems");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Description = "Beer",
+                            Purchased = false
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Description = "Toilet Paper",
+                            Purchased = true,
+                            PurchasedFrom = "Acme"
+                        });
                 });
 #pragma warning restore 612, 618
         }
